@@ -2,15 +2,20 @@ import "regenerator-runtime/runtime";
 import ChartsEmbedSDK from "@mongodb-js/charts-embed-dom";
 
 const sdk = new ChartsEmbedSDK({
-  baseUrl: "https://charts.mongodb.com/charts-embedding-examples-wgffp" // Optional: ~REPLACE~ with the Base URL from your Embed Chart dialog
+  baseUrl: "https://charts.mongodb.com/charts-project-0-qinjp"
 });
 
 const chart = sdk.createChart({
-  chartId: "90a8fe84-dd27-4d53-a3fc-0e40392685dd", // Optional: ~REPLACE~ with the Chart ID from your Embed Chart dialog
+  chartId: "6a42a445-dddf-47ab-9567-187b00778014",
   height: "700px"
 });
 
-chart.addEventListener("click", (payload) => {
+const gs_heatmap = sdk.createChart({
+  chartId: "a9271355-bb2d-48e7-99db-535e734af2e6",
+  height: "700px"
+});
+
+gs_heatmap.addEventListener("click", (payload) => {
   document.getElementById("payload").innerHTML = '<pre>' + JSON.stringify(payload, null, 2) + '</pre>'; 
 
   let infoText = "";
@@ -40,6 +45,7 @@ chart.addEventListener("click", (payload) => {
 
 async function renderCharts() {
   await chart.render(document.getElementById("chart"));
+  await gs_heatmap.render(document.getElementById("gs_heatmap"));
 }
 
 renderCharts().catch((e) => window.alert(e.message));
