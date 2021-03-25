@@ -15,7 +15,14 @@ const gs_heatmap = sdk.createChart({
   height: "700px"
 });
 
-gs_heatmap.addEventListener("click", (payload) => {
+const top20monthly = sdk.createChart({
+  chartId: "81859818-0b0f-4fd5-8b0e-32f395d34b3e",
+  height: "700px"
+});
+
+const https = require('https')
+
+top20monthly.addEventListener("click", (payload) => {
   document.getElementById("payload").innerHTML = '<pre>' + JSON.stringify(payload, null, 2) + '</pre>'; 
 
   let infoText = "";
@@ -41,11 +48,14 @@ gs_heatmap.addEventListener("click", (payload) => {
   }
 
   document.getElementById("info").innerHTML = "<ul>" + infoText + "</ul>";
+  
+  window.open(`https://airfield-kmlgen.ue.r.appspot.com/?db=BENTONVILLE&tail=${payload.data.y.value}`)
 });
 
 async function renderCharts() {
   await chart.render(document.getElementById("chart"));
   await gs_heatmap.render(document.getElementById("gs_heatmap"));
+  await top20monthly.render(document.getElementById("top20monthly"));
 }
 
 renderCharts().catch((e) => window.alert(e.message));
