@@ -10,7 +10,7 @@
   "dependencies": {
     "@mongodb-js/charts-embed-dom": "^2.0.1",
     "cors": "^2.8.5",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "jsonwebtoken": "^8.3.0",
     "regenerator-runtime": "^0.13.3",
     "request": "^2.88.2",
